@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BinærToDecimal Calculator</title>
+</head>
+<body>
+
+<h1>Dette program kan omregne fra det binærtal system til 10-talssystemet og omvendt</h1>
+
+<b>Binær tal 1 eller 0</b>
+<form oninput="x.value=parseInt(binarNumber.value, 2)">
+    <input type="text" id="binarNumber" oninput="this.value = this.value.replace(/[^0-1.]/g, '').replace(/(\..*)\./g, '$1');"><br>
+    10-tal: <mark><output name="x" for="binarNumber"></output></mark>
+</form>
+
+
+<br><b>10- talssystem</b>
+<form oninput="y.value=decimal()">
+    <input type="text" id="tiTal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"><br>
+    Binær tal: <mark><output name="y" for="tiTal"></output></mark>
+</form>
+
+<script>
+    function decimal() {
+        var decimal=document.getElementById("tiTal").value;
+        var tempDecimal,rem,binary=0,place=1;
+        tempDecimal=decimal;
+        while(tempDecimal>0) {
+            rem=tempDecimal%2;
+            binary=binary+(rem*place);
+            tempDecimal=parseInt(tempDecimal/2);
+            place=place*10;
+        }
+        return binary;
+    }
+</script>
+
+</body>
+</html>
